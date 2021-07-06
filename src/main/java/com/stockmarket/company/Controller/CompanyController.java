@@ -4,6 +4,7 @@ import com.stockmarket.company.DTO.AddCompanyDTO;
 import com.stockmarket.company.DTO.CompanyDTO;
 import com.stockmarket.company.Service.SectorClientService;
 import com.stockmarket.company.Service.CompanyService;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,7 @@ public class CompanyController {
         return ResponseEntity.badRequest().body(ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map( fieldError -> fieldError.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)//.map( fieldError -> fieldError.getDefaultMessage())
                 .collect(Collectors.joining(" , ")));
     }
 
