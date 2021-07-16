@@ -1,6 +1,7 @@
 package com.stockmarket.company.Controller;
 
 import com.stockmarket.company.DTO.AddCompanyDTO;
+import com.stockmarket.company.DTO.AddIpoDTO;
 import com.stockmarket.company.DTO.CompanyDTO;
 import com.stockmarket.company.Service.SectorClientService;
 import com.stockmarket.company.Service.CompanyService;
@@ -10,19 +11,15 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/company")
 public class CompanyController {
 
-    private final SectorClientService sectorClientService;
-
     private final CompanyService companyService;
 
-    public CompanyController(SectorClientService sectorClientService, CompanyService companyService) {
-        this.sectorClientService = sectorClientService;
+    public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
 
@@ -44,6 +41,21 @@ public class CompanyController {
     @GetMapping("/getBySector/{sectorId}")
     public ResponseEntity<Object> getCompaniesBySector(@PathVariable("sectorId") Long sectorId){
         return companyService.getCompaniesBySector(sectorId).getResponse();
+    }
+
+    @PostMapping("/ipo/add")
+    public ResponseEntity<Object> addIPO(@Valid @RequestBody AddIpoDTO addIpoDTO){
+        return companyService.addIpo(addIpoDTO).getResponse();
+    }
+
+    @GetMapping("/ipo/get/{id}")
+    public ResponseEntity<Object> getIPOById(@PathVariable("id") Long id){
+        return companyService.getIPOById(id).getResponse();
+    }
+
+    @GetMapping("/ipo/getAll")
+    public ResponseEntity<Object> getAllIPOs(){
+        return companyService.getAllIPOs().getResponse();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
