@@ -11,10 +11,8 @@ public interface IPORepository extends JpaRepository<IPO, Long> {
 
     boolean existsByCompanyId(Long companyId);
 
-    IPOInfo getIPOById(Long id);
-
     @Query("select ipo from IPO ipo order by ipo.id")
-    List<IPOInfo> getAll();
+    List<IPO> findAll();
     /*
     @Query(value = "create event ?1 on schedule at ?2 do insert ", nativeQuery = true)
     Object chumma(String eventName, Timestamp timestamp);

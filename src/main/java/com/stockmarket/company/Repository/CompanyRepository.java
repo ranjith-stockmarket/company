@@ -18,11 +18,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Query("update Company c set c.listed=?2 where c.id=?1")
     void updateCompanyStatus(Long id, Boolean status);
 
-    CompanyInfo getCompanyById(Long id);
-
-    @Query("select c from Company c")
-    List<CompanyInfo> getAll();
-
-    @Query("select c from Company c where c.sectorId=?1")
-    List<CompanyInfo> findAllBySectorId(Long sectorId);
+    List<Company> findBySectorId(Long sectorId);
 }

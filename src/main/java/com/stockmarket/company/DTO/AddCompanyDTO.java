@@ -21,15 +21,4 @@ public class AddCompanyDTO {
     @NotNull(message = "Sector ID can't be null")
     private Long sectorId;
     private String brief;
-
-    public Company getCompany(){
-        Company company = new Company();
-        company.setBrief(brief);
-        company.setCeo(ceo);
-        company.setBoardOfDirectors(boardOfDirectors);
-        company.setListed(listed);
-        company.setName(name);
-        company.setSectorId(sectorId);
-        return company;
-    }
 }
