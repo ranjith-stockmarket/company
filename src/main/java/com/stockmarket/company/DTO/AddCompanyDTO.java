@@ -16,7 +16,7 @@ public class AddCompanyDTO {
     private String name;
     @Size(max = 255, message = "CEO Name be less than 100 Characters")
     private String ceo;
-    private Boolean listed;
+    private Boolean listed=false;
     private String boardOfDirectors;
     @NotNull(message = "Sector ID can't be null")
     private Long sectorId;

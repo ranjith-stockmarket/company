@@ -25,6 +25,6 @@ public class ClientService {
 
     public SectorDTO getSector(Long sectorId) {
         return restTemplate.
-                getForObject(SECTOR_SERVICE+"get/"+sectorId, SectorDTO.class);
+                getForObject(SECTOR_SERVICE+"/get/"+sectorId, SectorDTO.class);
     }
 }
